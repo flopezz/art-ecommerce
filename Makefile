@@ -22,3 +22,7 @@ migrate: ## Execute migrations
 .PHONY: run 
 run: ## Deploy server
 	$(PYTHON) manage.py runserver
+
+.PHONY: djshell
+djshell: ## Access django shell
+	$(PYTHON) manage.py shell
