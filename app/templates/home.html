@@ -8,6 +8,19 @@
     <p>Discover and purchase amazing artwork from talented artists.</p>
 </header>
 <div class="container">
+
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
+    {% else %}
+        <p>You are not logged in</p>
+        </p><a href="{% url 'login' %}">Log In</a></p>
+        </p><a href="{% url 'signup' %}">Sing In</a></p>
+    {% endif %}
+
     <h2>Featured Paintings</h2>
     <div class="grid">
         {% for painting in paintings %}
@@ -21,6 +34,7 @@
         <p>No paintings available at the moment.</p>
         {% endfor %}
     </div>
+
 </div>
 <footer>
     <p>&copy; 2025 Art-E. All rights reserved.</p>
