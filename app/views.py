@@ -7,6 +7,13 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
 from app.models import Painting, PaintingSize
+from django.template import loader
+
+def home(request):
+    template = loader.get_template("home.html")
+    paintings = Painting.objects.all()
+    context = {"paintings": paintings}
+    return HttpResponse(template.render(context, request))
 
 @csrf_exempt
 def user(request):

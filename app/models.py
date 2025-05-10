@@ -22,7 +22,7 @@ class Painting(models.Model):
     description = models.CharField(max_length=PAINTING_DESCRIPTION_MAX_LENGTH, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     category =  models.CharField(choices=PaintingCategory.choices)
-    image = models.ImageField(upload_to="paintings")
+    image = models.ImageField()
     artist = models.ForeignKey(User, on_delete=models.CASCADE)
     price = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(100_000_000)])
     size = PaintingSize()

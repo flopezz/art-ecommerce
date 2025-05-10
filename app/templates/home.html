@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<header>
+    <h1>Welcome to Art E-Commerce</h1>
+    <p>Discover and purchase amazing artwork from talented artists.</p>
+</header>
+<div class="container">
+    <h2>Featured Paintings</h2>
+    <div class="grid">
+        {% for painting in paintings %}
+        <div class="painting">
+            <img src="{{ painting.image.url }}" alt="{{ painting.title }}">    
+            <h3>{{ painting.title }}</h3>
+            <p>By {{ painting.artist.username }}</p>
+            <p>Price: ${{ painting.price }}</p>
+        </div>
+        {% empty %}
+        <p>No paintings available at the moment.</p>
+        {% endfor %}
+    </div>
+</div>
+<footer>
+    <p>&copy; 2025 Art-E. All rights reserved.</p>
+</footer>
+
+{% endblock %}
+
