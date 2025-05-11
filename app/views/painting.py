@@ -92,3 +92,30 @@ def painting(request):
             return JsonResponse({"error": "Invalid JSON body"}, status=400)
 
     return JsonResponse({"error": "Invalid HTTP method"}, status=405)
+
+def details(request, painting_id):
+    if request.method == "GET":
+        if not painting_id:
+            return JsonResponse({"error": "Painting ID is required"}, status=400)
+
+        painting = get_object_or_404(Painting, id=painting_id)
+        painting_data = {
+            "id": painting.id,
+            "title": painting.title,
+            "description": painting.description,
+            "category": painting.category,
+            "image": painting.image if painting.image else None,
+            "artist": painting.artist.username,
+            "price": painting.price,
+            "year": painting.year,
+            "size": {
+            "height": painting.size.height if painting.size else None,
+            "width": painting.size.width if painting.size else None,
+            } if painting.size else None,
+        }
+
+        template = loader.get_template("painting_details.html")
+        context = {"painting": painting_data}
+        return HttpResponse(template.render(context, request))
+
+    return JsonResponse({"error": "Invalid HTTP method"}, status=405)

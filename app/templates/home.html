@@ -3,10 +3,6 @@
 
 {% block content %}
 
-<header>
-    <h1>Welcome to Art E-Commerce</h1>
-    <p>Discover and purchase amazing artwork from talented artists.</p>
-</header>
 <div class="container">
 
     {% if user.is_authenticated %}
@@ -29,16 +25,14 @@
             <h3>{{ painting.title }}</h3>
             <p>By {{ painting.artist.username }}</p>
             <p>Price: ${{ painting.price }}</p>
-        </div>
+            </p><a href="{% url 'image_details' painting.id %}">+Details</a></p>
+    </div>
         {% empty %}
         <p>No paintings available at the moment.</p>
         {% endfor %}
     </div>
 
 </div>
-<footer>
-    <p>&copy; 2025 Art-E. All rights reserved.</p>
-</footer>
 
 {% endblock %}
 

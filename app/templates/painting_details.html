@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>{{ painting.title }}</h2>
+        <div class="painting">
+            <img src="{{ painting.image.url }}" alt="{{ painting.title }}">
+            <h3>{{ painting.title }}</h3>
+            <p> By {{ painting.artist.username }}</p>
+            <p> Description: {{ painting.description }}</p>
+            <p> Price: {{ painting.price }}</p>
+            <p> Year: {{ painting.year }}</p>
+            <p> Size: {{ painting.size.height }} x {{ painting.size.width }}</p>
+            <p> Price: ${{ painting.price }}</p>
+        </div>
+
+</div>
+
+
+{% endblock %}
+

@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 from app.views.home import home
 from app.views.user import user
-from app.views.painting import painting
+from app.views.painting import painting, details
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -27,10 +27,10 @@ urlpatterns = [
     path('', home, name="home"),
     path('admin/', admin.site.urls),
     path('user/', user),
+    path('painting/details/<int:painting_id>/', details, name="image_details"),
     path('painting/', painting),
     path("accounts/", include("accounts.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
